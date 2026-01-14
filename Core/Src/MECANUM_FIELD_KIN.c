@@ -58,5 +58,4 @@ void MecanumRobot_CalculateWheelSpeeds(Mecanum_Robot *robot)
     robot->u[1] = rads_to_rpm(w2);
     robot->u[2] = rads_to_rpm(w3);
     robot->u[3] = rads_to_rpm(w4);
-    
 }

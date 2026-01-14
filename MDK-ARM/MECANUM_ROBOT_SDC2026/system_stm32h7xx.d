@@ -1,4 +1,4 @@
-mecanum_robot_sdc2026\system_stm32h7xx.o: ../Core/Src/system_stm32h7xx.c
+mecanum_robot_sdc2026\system_stm32h7xx.o: ..\Core\Src\system_stm32h7xx.c
 mecanum_robot_sdc2026\system_stm32h7xx.o: ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h
 mecanum_robot_sdc2026\system_stm32h7xx.o: ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h743xx.h
 mecanum_robot_sdc2026\system_stm32h7xx.o: ../Drivers/CMSIS/Include/core_cm7.h

@@ -391,9 +391,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>::CMSIS</GroupName>
-        </Group>
-        <Group>
           <GroupName>Application/User/Core</GroupName>
           <Files>
             <File>
@@ -410,6 +407,41 @@
               <FileName>stm32h7xx_hal_msp.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/stm32h7xx_hal_msp.c</FilePath>
+            </File>
+            <File>
+              <FileName>main.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\Inc\main.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7xx_hal_conf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\Inc\stm32h7xx_hal_conf.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7xx_it.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\Inc\stm32h7xx_it.h</FilePath>
+            </File>
+            <File>
+              <FileName>syscalls.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\syscalls.c</FilePath>
+            </File>
+            <File>
+              <FileName>system_stm32h7xx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\system_stm32h7xx.c</FilePath>
+            </File>
+            <File>
+              <FileName>MECANUM_FIELD_KIN.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\MECANUM_FIELD_KIN.c</FilePath>
+            </File>
+            <File>
+              <FileName>MECANUM_FIELD_KIN.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\Inc\MECANUM_FIELD_KIN.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -510,13 +542,9 @@
         </Group>
         <Group>
           <GroupName>Drivers/CMSIS</GroupName>
-          <Files>
-            <File>
-              <FileName>system_stm32h7xx.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/system_stm32h7xx.c</FilePath>
-            </File>
-          </Files>
+        </Group>
+        <Group>
+          <GroupName>::CMSIS</GroupName>
         </Group>
       </Groups>
     </Target>
