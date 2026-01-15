@@ -5,12 +5,13 @@ mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/s
 mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.h
 mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h
 mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h743xx.h
-mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: ../Drivers/CMSIS/Include/core_cm7.h
+mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: C:\Users\Vuz\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\core_cm7.h
 mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: ../Drivers/CMSIS/Include/cmsis_version.h
-mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
-mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
-mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: ../Drivers/CMSIS/Include/mpu_armv7.h
+mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: C:\Users\Vuz\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cmsis_version.h
+mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: C:\Users\Vuz\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cmsis_compiler.h
+mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: C:\Users\Vuz\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cmsis_armcc.h
+mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: C:\Users\Vuz\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\mpu_armv7.h
+mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: C:\Users\Vuz\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cachel1_armv7.h
 mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/system_stm32h7xx.h
 mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h
 mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
@@ -31,3 +32,6 @@ mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/s
 mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_i2c_ex.h
 mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr.h
 mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr_ex.h
+mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h
+mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
+mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h

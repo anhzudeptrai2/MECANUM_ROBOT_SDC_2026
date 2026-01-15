@@ -6,6 +6,9 @@
 "mecanum_robot_sdc2026\syscalls.o"
 "mecanum_robot_sdc2026\system_stm32h7xx.o"
 "mecanum_robot_sdc2026\mecanum_field_kin.o"
+"mecanum_robot_sdc2026\ps4.o"
+"mecanum_robot_sdc2026\pid.o"
+"mecanum_robot_sdc2026\driver_pid_aml.o"
 "mecanum_robot_sdc2026\stm32h7xx_hal_cortex.o"
 "mecanum_robot_sdc2026\stm32h7xx_hal_rcc.o"
 "mecanum_robot_sdc2026\stm32h7xx_hal_rcc_ex.o"
@@ -24,6 +27,8 @@
 "mecanum_robot_sdc2026\stm32h7xx_hal_exti.o"
 "mecanum_robot_sdc2026\stm32h7xx_hal_tim.o"
 "mecanum_robot_sdc2026\stm32h7xx_hal_tim_ex.o"
+"mecanum_robot_sdc2026\stm32h7xx_hal_uart.o"
+"mecanum_robot_sdc2026\stm32h7xx_hal_uart_ex.o"
 --strict --scatter "MECANUM_ROBOT_SDC2026\MECANUM_ROBOT_SDC2026.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

@@ -6,7 +6,7 @@
 
 // test
 
-#define PI 3.1415
+#define PI 3.1415f
 #define WHEEL_RADIUS 0.485f // Ban kinh banh xe (m)
 #define ROBOT_LENGTH 0.52f  // Chieu dai robot (m)
 #define ROBOT_WIDTH 0.43f   // Chieu rong robot (m)

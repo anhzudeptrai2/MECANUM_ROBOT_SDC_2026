@@ -16,7 +16,7 @@
         <TargetCommonOption>
           <Device>STM32H743VITx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32H7xx_DFP.4.1.3</PackID>
+          <PackID>Keil.STM32H7xx_DFP.4.0.0</PackID>
           <PackURL>https://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000-0x2001FFFF) IRAM2(0x24000000-0x2407FFFF) IROM(0x8000000-0x81FFFFF) CLOCK(12000000) FPU3(DFPU) CPUTYPE("Cortex-M7") ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -443,6 +443,36 @@
               <FileType>5</FileType>
               <FilePath>..\Core\Inc\MECANUM_FIELD_KIN.h</FilePath>
             </File>
+            <File>
+              <FileName>PS4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\PS4.c</FilePath>
+            </File>
+            <File>
+              <FileName>PS4.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\Inc\PS4.h</FilePath>
+            </File>
+            <File>
+              <FileName>PID.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\PID.c</FilePath>
+            </File>
+            <File>
+              <FileName>PID.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\Inc\PID.h</FilePath>
+            </File>
+            <File>
+              <FileName>DRIVER_PID_AML.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\DRIVER_PID_AML.c</FilePath>
+            </File>
+            <File>
+              <FileName>DRIVER_PID_AML.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\Inc\DRIVER_PID_AML.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -538,6 +568,16 @@
               <FileType>1</FileType>
               <FilePath>../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32h7xx_hal_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7xx_hal_uart_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -553,8 +593,8 @@
   <RTE>
     <apis/>
     <components>
-      <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="4.3.0" condition="CMSIS Core">
-        <package name="CMSIS" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="ARM" version="4.5.0"/>
+      <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="5.4.0" condition="ARMv6_7_8-M Device">
+        <package name="CMSIS" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="ARM" version="5.7.0"/>
         <targetInfos>
           <targetInfo name="MECANUM_ROBOT_SDC2026"/>
         </targetInfos>
