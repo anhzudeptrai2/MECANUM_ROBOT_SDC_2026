@@ -18,6 +18,10 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "MECANUM_FIELD_KIN.h"
+#include "PID.h"
+#include "PS4.h"
+#include "DRIVER_PID_AML.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -44,6 +48,11 @@
 UART_HandleTypeDef huart7;
 DMA_HandleTypeDef hdma_uart7_rx;
 DMA_HandleTypeDef hdma_uart7_tx;
+
+Motor_Driver DRV_AML[4];
+Mecanum_Robot Robot;
+
+
 
 /* USER CODE BEGIN PV */
 

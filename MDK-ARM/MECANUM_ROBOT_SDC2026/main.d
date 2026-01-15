@@ -36,3 +36,9 @@ mecanum_robot_sdc2026\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_
 mecanum_robot_sdc2026\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h
 mecanum_robot_sdc2026\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
 mecanum_robot_sdc2026\main.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h
+mecanum_robot_sdc2026\main.o: ../Core/Inc/MECANUM_FIELD_KIN.h
+mecanum_robot_sdc2026\main.o: ../Core/Inc/PID.h
+mecanum_robot_sdc2026\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+mecanum_robot_sdc2026\main.o: ../Core/Inc/PS4.h
+mecanum_robot_sdc2026\main.o: ../Core/Inc/DRIVER_PID_AML.h
+mecanum_robot_sdc2026\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
