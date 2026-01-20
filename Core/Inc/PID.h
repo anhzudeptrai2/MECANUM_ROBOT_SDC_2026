@@ -21,7 +21,8 @@
 #ifndef __PID_H_
 #define __PID_H_
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Include ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Include
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #include <stdint.h>
 #include <string.h>
 
@@ -35,7 +36,8 @@
 
 #elif defined(__GNUC__) && !defined(USE_HAL_DRIVER) /* Check compiler */
 
-#pragma GCC diagnostic ignored "-Wunused-function" /* Disable 'unused function' warning */
+#pragma GCC diagnostic ignored                                                 \
+    "-Wunused-function" /* Disable 'unused function' warning */
 
 /* ------------------------------------------------------------------ */
 
@@ -88,9 +90,10 @@
 
 #pragma diag_suppress = Pe177 /* Disable 'unused function' warning */
 
-#elif defined(__GNUC__) /* GNU Compiler */
+#elif defined(__GNUC__) && !defined(__ARMCC_VERSION) /* GNU Compiler */
 
-#pragma GCC diagnostic ignored "-Wunused-function" /* Disable 'unused function' warning */
+#pragma GCC diagnostic ignored                                                 \
+    "-Wunused-function" /* Disable 'unused function' warning */
 
 #endif /* __ICCARM__ */
 
@@ -104,7 +107,8 @@
 
 /* ------------------------------------------------------------------ */
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Defines ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Defines
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ------------------------ Library ------------------------ */
 #define _PID_LIBRARY_VERSION 1.0.0
 
@@ -168,77 +172,82 @@
 
 /* --------------------------------------------------------- */
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Types ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Types
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* PID Mode */
-typedef enum
-{
+typedef enum {
 
-    _PID_MODE_MANUAL = 0,
-    _PID_MODE_AUTOMATIC = 1
+  _PID_MODE_MANUAL = 0,
+  _PID_MODE_AUTOMATIC = 1
 
 } PIDMode_TypeDef;
 
 /* PID P On x */
-typedef enum
-{
+typedef enum {
 
-    _PID_P_ON_M = 0, /* Proportional on Measurement */
-    _PID_P_ON_E = 1
+  _PID_P_ON_M = 0, /* Proportional on Measurement */
+  _PID_P_ON_E = 1
 
 } PIDPON_TypeDef;
 
 /* PID Control direction */
-typedef enum
-{
+typedef enum {
 
-    _PID_CD_DIRECT = 0,
-    _PID_CD_REVERSE = 1
+  _PID_CD_DIRECT = 0,
+  _PID_CD_REVERSE = 1
 
 } PIDCD_TypeDef;
 
 /* PID Structure */
-typedef struct
-{
+typedef struct {
 
-    PIDPON_TypeDef POnE;
-    PIDMode_TypeDef InAuto;
+  PIDPON_TypeDef POnE;
+  PIDMode_TypeDef InAuto;
 
-    PIDPON_TypeDef POn;
-    PIDCD_TypeDef ControllerDirection;
+  PIDPON_TypeDef POn;
+  PIDCD_TypeDef ControllerDirection;
 
-    uint32_t LastTime;
-    uint32_t SampleTime;
+  uint32_t LastTime;
+  uint32_t SampleTime;
 
-    double DispKp;
-    double DispKi;
-    double DispKd;
+  double DispKp;
+  double DispKi;
+  double DispKd;
 
-    double Kp;
-    double Ki;
-    double Kd;
+  double Kp;
+  double Ki;
+  double Kd;
 
-    double *MyInput;
-    double *MyOutput;
-    double *MySetpoint;
+  double *MyInput;
+  double *MyOutput;
+  double *MySetpoint;
 
-    double OutputSum;
-    double LastInput;
+  double OutputSum;
+  double LastInput;
 
-    double OutMin;
-    double OutMax;
+  double OutMin;
+  double OutMax;
 
 } PID_TypeDef;
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Variables ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Enum ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Struct ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Class ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Prototype ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Variables
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Enum
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Struct
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Class
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Prototype
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* :::::::::::::: Init ::::::::::::: */
 void PID_Init(PID_TypeDef *uPID);
 
-void PID(PID_TypeDef *uPID, double *Input, double *Output, double *Setpoint, double Kp, double Ki, double Kd, PIDPON_TypeDef POn, PIDCD_TypeDef ControllerDirection);
-void PID2(PID_TypeDef *uPID, double *Input, double *Output, double *Setpoint, double Kp, double Ki, double Kd, PIDCD_TypeDef ControllerDirection);
+void PID(PID_TypeDef *uPID, double *Input, double *Output, double *Setpoint,
+         double Kp, double Ki, double Kd, PIDPON_TypeDef POn,
+         PIDCD_TypeDef ControllerDirection);
+void PID2(PID_TypeDef *uPID, double *Input, double *Output, double *Setpoint,
+          double Kp, double Ki, double Kd, PIDCD_TypeDef ControllerDirection);
 
 /* ::::::::::: Computing ::::::::::: */
 uint8_t PID_Compute(PID_TypeDef *uPID);
@@ -252,7 +261,8 @@ void PID_SetOutputLimits(PID_TypeDef *uPID, double Min, double Max);
 
 /* :::::::::: PID Tunings :::::::::: */
 void PID_SetTunings(PID_TypeDef *uPID, double Kp, double Ki, double Kd);
-void PID_SetTunings2(PID_TypeDef *uPID, double Kp, double Ki, double Kd, PIDPON_TypeDef POn);
+void PID_SetTunings2(PID_TypeDef *uPID, double Kp, double Ki, double Kd,
+                     PIDPON_TypeDef POn);
 
 /* ::::::::: PID Direction ::::::::: */
 void PID_SetControllerDirection(PID_TypeDef *uPID, PIDCD_TypeDef Direction);
@@ -266,6 +276,7 @@ double PID_GetKp(PID_TypeDef *uPID);
 double PID_GetKi(PID_TypeDef *uPID);
 double PID_GetKd(PID_TypeDef *uPID);
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ End of the program ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ End of the program
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 #endif /* __PID_H_ */

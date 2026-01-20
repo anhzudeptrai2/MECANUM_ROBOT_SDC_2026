@@ -1280,11 +1280,11 @@ ARM Macro Assembler    Page 20
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M7.fp.dp --apcs=
 interwork --depend=mecanum_robot_sdc2026\startup_stm32h743xx.d -omecanum_robot_
-sdc2026\startup_stm32h743xx.o -I.\RTE\_MECANUM_ROBOT_SDC2026 -IC:\Users\Vuz\App
-Data\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include --predefine="__EVAL SET
-A 1" --predefine="__UVISION_VERSION SETA 531" --predefine="_RTE_ SETA 1" --pred
-efine="STM32H743xx SETA 1" --predefine="_RTE_ SETA 1" --list=startup_stm32h743x
-x.lst startup_stm32h743xx.s
+sdc2026\startup_stm32h743xx.o -I.\RTE\_MECANUM_ROBOT_SDC2026 -IC:\Users\Admin\A
+ppData\Local\Arm\Packs\ARM\CMSIS\6.1.0\CMSIS\Core\Include --predefine="__EVAL S
+ETA 1" --predefine="__UVISION_VERSION SETA 531" --predefine="_RTE_ SETA 1" --pr
+edefine="STM32H743xx SETA 1" --predefine="_RTE_ SETA 1" --list=startup_stm32h74
+3xx.lst startup_stm32h743xx.s
 
 
 

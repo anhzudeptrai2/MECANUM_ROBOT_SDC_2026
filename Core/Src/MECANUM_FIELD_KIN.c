@@ -1,61 +1,145 @@
 #include "MECANUM_FIELD_KIN.h"
 
-float rads_to_rpm(float rads)
+/* PID tuning for yaw-hold (omega control) */
+static double Mecanum_Omega_PID_Out;
+static double Mecanum_Kp_Omega = 0.75f;
+static double Mecanum_Ki_Omega = 0.001f;
+static double Mecanum_Kd_Omega = 0.0f;
+static double Mecanum_Speed_Omega_PID = 8.0f;
+
+PID_TypeDef Mecanum_Omega_PID;
+MRb Mecanum_4_Bot;
+
+typedef struct
 {
-    return (rads * 60.0f) / (2.0f * PI);
+    float x_axis; // (-127 -> 127)
+    float y_axis; // (-127 -> 127)
+    float z_axis; // (-127 -> 127)
+} JoystickAxes;
+
+static JoystickAxes Joystick;
+
+static float rads_2_rpm(float rads_in)
+{
+    return (rads_in * 60.0f) / (2.0f * PI);
 }
 
-float rpm_to_rads(float rpm)
+static void Joystick_To_Velocity(MRb *robot, float max_speed, float max_omega)
 {
-    return (rpm * 2.0f * PI) / 60.0f;
-}
+    float Dead_Point = 0.5f;
 
-void MecanumRobot_Init(Mecanum_Robot *robot, float max_speed, float max_omega)
-{
-    robot->Vx = 0.0f;
-    robot->Vy = 0.0f;
-    robot->omega = 0.0f;
-    robot->theta = 0.0f;
-    robot->max_speed = max_speed;
-    robot->max_omega = max_omega;
-    robot->is_yaw_fix = 0;
-    robot->fix_angle = 0.0f;
-    robot->IMU_theta = 0.0f;
-    for (int i = 0; i < 4; i++)
+    float mapped_x = (Joystick.x_axis) / 127.0f;
+    float mapped_y = (Joystick.y_axis) / 127.0f;
+    float mapped_z = (Joystick.z_axis) / 127.0f;
+
+    if (fabsf(mapped_x) < Dead_Point)
+
+
+
+
+
+    
+        mapped_x = 0.0f;
+    if (fabsf(mapped_y) < Dead_Point)
+        mapped_y = 0.0f;
+    if (fabsf(mapped_z) < Dead_Point)
+        mapped_z = 0.0f;
+
+    robot->vx = mapped_x * max_speed;
+    robot->vy = mapped_y * max_speed;
+
+    if (robot->is_yaw_fix)
     {
-        robot->u[i] = 0.0f;
+        PID_Compute(&Mecanum_Omega_PID);
+        robot->omega = (float)Mecanum_Omega_PID_Out;
+    }
+    else
+    {
+        robot->omega = mapped_z * max_omega;
     }
 }
 
-void Joystick_To_Velocity(Mecanum_Robot *robot, float joy_x, float joy_y, float joy_z)
+void MecanumRobot_Init(MRb *robot, float m_speed, float m_omg)
 {
-    float deadzone = 0.05f;
-    if (fabs(joy_x) < deadzone)
-        joy_x = 0.0f;
-    if (fabs(joy_y) < deadzone)
-        joy_y = 0.0f;
-    if (fabs(joy_z) < deadzone)
-        joy_z = 0.0f;
+    robot->vx = 0.0f;
+    robot->vy = 0.0f;
+    robot->omega = 0.0f;
+    robot->theta = 0.0f;
+    robot->max_speed = m_speed;
+    robot->max_omega = m_omg;
 
-    robot->Vx = joy_x * robot->max_speed;
-    robot->Vy = joy_y * robot->max_speed;
-    robot->omega = joy_z * robot->max_omega;
+    robot->u[0] = 0.0f;
+    robot->u[1] = 0.0f;
+    robot->u[2] = 0.0f;
+    robot->u[3] = 0.0f;
+
+    robot->is_yaw_fix = 0;
+    robot->fix_angle = 0;
+    robot->IMU_theta = 0;
+
+    /* PID Init for Omega control to fix robot angle */
+    PID(&Mecanum_Omega_PID,
+        &robot->IMU_theta,
+        &Mecanum_Omega_PID_Out,
+        &robot->fix_angle,
+        Mecanum_Kp_Omega,
+        Mecanum_Ki_Omega,
+        Mecanum_Kd_Omega,
+        _PID_P_ON_E,
+        _PID_CD_REVERSE);
+
+    PID_SetMode(&Mecanum_Omega_PID, _PID_MODE_AUTOMATIC);
+    PID_SetSampleTime(&Mecanum_Omega_PID, 1);
+    PID_SetOutputLimits(&Mecanum_Omega_PID, -Mecanum_Speed_Omega_PID, Mecanum_Speed_Omega_PID);
 }
 
-void MecanumRobot_CalculateWheelSpeeds(Mecanum_Robot *robot)
+void MecanumRobot_CalculateWheelSpeeds(MRb *robot, float *u_fl, float *u_fr, float *u_rl, float *u_rr)
 {
-    float Vx_r = robot->Vx * cosf(robot->theta) + robot->Vy * sinf(robot->theta);
-    float Vy_r = -robot->Vx * sinf(robot->theta) + robot->Vy * cosf(robot->theta);
+    /* Field-centric to robot-centric */
+    float vx_robot = robot->vx * cosf(robot->theta) + robot->vy * sinf(robot->theta);
+    float vy_robot = -robot->vx * sinf(robot->theta) + robot->vy * cosf(robot->theta);
 
-    float sum_LW = ROBOT_LENGTH + ROBOT_WIDTH;
+    /* Mecanum inverse kinematics (rad/s) */
+    float w_fl = (vx_robot - vy_robot - MECANUM_K * robot->omega) / MECANUM_WHEEL_RADIUS;
+    float w_fr = (vx_robot + vy_robot + MECANUM_K * robot->omega) / MECANUM_WHEEL_RADIUS;
+    float w_rl = (vx_robot + vy_robot - MECANUM_K * robot->omega) / MECANUM_WHEEL_RADIUS;
+    float w_rr = (vx_robot - vy_robot + MECANUM_K * robot->omega) / MECANUM_WHEEL_RADIUS;
 
-    float w1 = (Vx_r - Vy_r - sum_LW * robot->omega) / WHEEL_RADIUS; // truoc trai
-    float w2 = (Vx_r + Vy_r + sum_LW * robot->omega) / WHEEL_RADIUS; // truoc phai
-    float w3 = (Vx_r + Vy_r - sum_LW * robot->omega) / WHEEL_RADIUS; // sau phai
-    float w4 = (Vx_r - Vy_r + sum_LW * robot->omega) / WHEEL_RADIUS; // sau trai
+    *u_fl = rads_2_rpm(w_fl);
+    *u_fr = rads_2_rpm(w_fr);
+    *u_rl = rads_2_rpm(w_rl);
+    *u_rr = rads_2_rpm(w_rr);
+}
 
-    robot->u[0] = rads_to_rpm(w1);
-    robot->u[1] = rads_to_rpm(w2);
-    robot->u[2] = rads_to_rpm(w3);
-    robot->u[3] = rads_to_rpm(w4);
+void MecanumRobot_Field_Control(MRb *robot, PS4_DATA *ps4_joy, float imu_theta, uint8_t neg_heading)
+{
+    robot->IMU_theta = -imu_theta;
+
+    Joystick.x_axis = ps4_joy->l_stick_x;
+    Joystick.y_axis = -ps4_joy->l_stick_y;
+    Joystick.z_axis = -ps4_joy->r_stick_x;
+
+    Joystick_To_Velocity(robot, robot->max_speed, robot->max_omega);
+
+    if (neg_heading)
+    {
+        robot->theta = (180.0f + imu_theta) * (PI / 180.0f);
+    }
+    else
+    {
+        robot->theta = imu_theta * (PI / 180.0f);
+    }
+
+    if (robot->theta > 2.0f * PI)
+    {
+        robot->theta -= 2.0f * PI;
+    }
+    else if (robot->theta < 0.0f)
+    {
+        robot->theta += 2.0f * PI;
+    }
+
+    robot->theta = -robot->theta;
+
+    MecanumRobot_CalculateWheelSpeeds(robot, &robot->u[0], &robot->u[1], &robot->u[2], &robot->u[3]);
 }

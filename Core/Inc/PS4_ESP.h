@@ -1,8 +1,8 @@
-#ifndef __PS4_H_
-#define __PS4_H_
+#ifndef __PS4_ESP_H_
+#define __PS4_ESP_H_
 
 #include "stm32h743xx.h"
-
+    
 #include <stdint.h>
 
 /* Forward declaration to avoid forcing HAL includes in this header. */

@@ -1,4 +1,4 @@
-#include "CRC_16.h"
+#include "CRC16.h"
 
 uint16_t CRC_16(uint8_t *buf, size_t len)
 {

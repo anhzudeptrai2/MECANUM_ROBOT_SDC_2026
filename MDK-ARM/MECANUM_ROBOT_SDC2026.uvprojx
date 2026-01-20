@@ -16,7 +16,7 @@
         <TargetCommonOption>
           <Device>STM32H743VITx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32H7xx_DFP.4.0.0</PackID>
+          <PackID>Keil.STM32H7xx_DFP.4.1.3</PackID>
           <PackURL>https://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000-0x2001FFFF) IRAM2(0x24000000-0x2407FFFF) IROM(0x8000000-0x81FFFFF) CLOCK(12000000) FPU3(DFPU) CPUTYPE("Cortex-M7") ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_PWR_LDO_SUPPLY,USE_HAL_DRIVER,STM32H743xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32H7xx_HAL_Driver/Inc;../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32H7xx/Include;../Drivers/CMSIS/Include</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32H7xx_HAL_Driver/Inc;../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32H7xx/Include;../Drivers/CMSIS/Core/Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -399,6 +399,11 @@
               <FilePath>../Core/Src/main.c</FilePath>
             </File>
             <File>
+              <FileName>main.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\Inc\main.h</FilePath>
+            </File>
+            <File>
               <FileName>stm32h7xx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/stm32h7xx_it.c</FilePath>
@@ -407,11 +412,6 @@
               <FileName>stm32h7xx_hal_msp.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/stm32h7xx_hal_msp.c</FilePath>
-            </File>
-            <File>
-              <FileName>main.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Core\Inc\main.h</FilePath>
             </File>
             <File>
               <FileName>stm32h7xx_hal_conf.h</FileName>
@@ -444,16 +444,6 @@
               <FilePath>..\Core\Inc\MECANUM_FIELD_KIN.h</FilePath>
             </File>
             <File>
-              <FileName>PS4.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\PS4.c</FilePath>
-            </File>
-            <File>
-              <FileName>PS4.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Core\Inc\PS4.h</FilePath>
-            </File>
-            <File>
               <FileName>PID.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\PID.c</FilePath>
@@ -472,6 +462,41 @@
               <FileName>DRIVER_PID_AML.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\Core\Inc\DRIVER_PID_AML.h</FilePath>
+            </File>
+            <File>
+              <FileName>PS4_ESP.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\PS4_ESP.c</FilePath>
+            </File>
+            <File>
+              <FileName>PS4_ESP.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\Inc\PS4_ESP.h</FilePath>
+            </File>
+            <File>
+              <FileName>WT901C.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\WT901C.c</FilePath>
+            </File>
+            <File>
+              <FileName>WT901C.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\Inc\WT901C.h</FilePath>
+            </File>
+            <File>
+              <FileName>CRC16.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\Inc\CRC16.h</FilePath>
+            </File>
+            <File>
+              <FileName>CRC16.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\CRC16.c</FilePath>
+            </File>
+            <File>
+              <FileName>sysmem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\sysmem.c</FilePath>
             </File>
           </Files>
         </Group>
